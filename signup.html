@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup form</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="sign-up-form" id="login-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOHtqsQizwi4syQ1AyhMVid6SO78Nfdd-meQ&usqp=CAU">
+        
+        <div class="left">
+        <h1> Sign Up Now </h1>
+        
+            <!-- <input type="text" id="username" class="input-box" placeholder="username" /> -->
+            <input type="text" id="email" name="email" class="input-box"  placeholder="Your Email" />
+        
+        
+
+            <input type="password" id="Password" name="password" class="input-box" placeholder="Your Password" />
+            
+           
+            <p><span><input type="checkbox"</span>I agree to the terms of services </p>
+            
+            <input type="submit" class="signup-btn"
+            id="login" name="login" value="Login" />
+            
+            </div>
+      
+    
+
+             
+            <hr>
+            <pre class="or">OR</pre>
+            
+             <button type="button" class="signup-btn"
+             id="login" 
+             >Log in with Google</button> 
+            
+         <p>Do you have an account ? <a href="/hello folder/newregister.html">Register</a></p>
+
+
+
+
+    </div>
+        </body>
+        <script type="module">
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+          import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+          import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+          import {getAuth, GoogleAuthProvider, signInWithRedirect,getRedirectResult, signInWithPopup, signout } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+
+         
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+        
+          // Your web app's Firebase configuration
+          const firebaseConfig = {
+    apiKey: "AIzaSyBP9rhSx8mAmGJPsEFXPVRWb33oFgoWmDQ",
+    authDomain: "last-try-de7d4.firebaseapp.com",
+    databaseURL: "https://last-try-de7d4-default-rtdb.firebaseio.com",
+    projectId: "last-try-de7d4",
+    storageBucket: "last-try-de7d4.appspot.com",
+    messagingSenderId: "312073556344",
+    appId: "1:312073556344:web:5d15257aca302f4f8ff88d"
+  };
+        
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const provider = new GoogleAuthProvider(app);
+          const database = getDatabase(app);
+          const auth = getAuth();
+      
+          sighup.addEventListener('click',(e) => {
+      
+              var email = document.getElementById('email').value;
+               var password = document.getElementById('password').value;
+              var username = document.getElementById('username').value;
+      
+      
+      
+              createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          set(ref (database, 'users/' + user.uid),{
+              username:username,
+              email: email
+      
+          })
+      
+          alert('user created!')
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+          alert(errorMessage);
+        });
+      
+            
+      
+      
+          });
+          login.addEventListener('click',(e)=>{
+            var email = document.getElementById('email').value;
+               var password = document.getElementById('password').value;
+
+
+            signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+
+      const dt =new Date();
+    update(ref (database, 'users/' + user.uid),{
+              last_login:dt,
+              
+    })
+    alert('user loged in!');
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    alert(errorMessage);
+  });
+
+
+            
+          });
+          const user = auth.currentUser;
+
+          onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+}); 
+logout.addEventListener('click',(e)=>{
+  
+   signOut(auth).then(() => {
+  // Sign-out successful.
+  alert('user loged out');
+}).catch((error) => {
+  // An error happened.
+  const errorCode = error.code;
+    const errorMessage = error.message;
+
+    alert(errorMessage);
+});
+
+
+});
+login.addEventListener('click',(e) =>{
+  // signInWithRedirect(auth, provider);
+
+  // getRedirectResult(auth)
+  // .then((result) => {
+  //   // This gives you a Google Access Token. You can use it to access Google APIs.
+  //   const credential = GoogleAuthProvider.credentialFromResult(result);
+  //   const token = credential.accessToken;
+
+  //   // The signed-in user info.
+  //   const user = result.user;
+  //   // IdP data available using getAdditionalUserInfo(result)
+  //   // ...
+  // }).catch((error) => {
+  //   // Handle Errors here.
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // The email of the user's account used.
+  //   const email = error.customData.email;
+  //   // The AuthCredential type that was used.
+  //   const credential = GoogleAuthProvider.credentialFromError(error);
+  //   // ...
+  // });
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+
+    alert(user.displayName);
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+    alert(errorMessage);
+  });
+
+
+});
+login.addEventListener('click',(e) =>{
+
+  signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
+
+
+});
+
+        </script>
+
+
+
+    
+    
+
+      
+   
+      
+
+
+
+</html>
+
+
+

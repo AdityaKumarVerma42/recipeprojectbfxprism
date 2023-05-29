@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Journey</title>
+    
+    
+      
+    <link rel="stylesheet" href="project.css">
+    
+    
+
+
+    
+   
+            
+</head>
+<body>
+    
+    <h1 id="heading1">All Recipe</h1>
+    <nav class="pro">
+    <div class="project">
+        
+    
+    <ul>
+        
+        
+        
+        <button class="btn"><a href="/hello folder/newsignin.html">Signup</a></button>
+        <hr>
+        <button class="btn" id="logout">Signout</button>
+        <hr>
+        <button class="btn" id="recepie"><a href="recipe.html">Get Receipe</a></button>
+
+
+
+    </ul>
+    
+    
+
+
+    </div>
+</nav>
+    <div class="container">
+    <ul>
+    
+
+
+   
+
+    </ul>
+</div>
+    <hr>
+    <pre>
+        
+    
+    
+    
+    
+              
+
+    
+</body>
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+apiKey: "AIzaSyBP9rhSx8mAmGJPsEFXPVRWb33oFgoWmDQ",
+authDomain: "last-try-de7d4.firebaseapp.com",
+databaseURL: "https://last-try-de7d4-default-rtdb.firebaseio.com",
+projectId: "last-try-de7d4",
+storageBucket: "last-try-de7d4.appspot.com",
+messagingSenderId: "312073556344",
+appId: "1:312073556344:web:5d15257aca302f4f8ff88d"
+
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth();
+
+document.getElementById('logout').addEventListener('click',()=>{
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      alert('user loged out');
+    }).catch((error) => {
+      // An error happened.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+ 
+         alert(errorMessage);
+    });
+})
+    </script>
+
+ 
+</html>

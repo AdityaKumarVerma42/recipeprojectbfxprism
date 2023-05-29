@@ -1,0 +1,109 @@
+#heading1{
+
+    color: beige;
+    background-color:black;
+    padding: 20px;
+    margin: 0;
+    
+}
+#heading2:hover{
+    color: blue;
+    background-color: burlywood;
+
+}
+
+a:hover{
+    color: black;
+    text-decoration: solid;
+    background-color: bisque;
+    
+
+}
+/* .container{
+    background-image: url("https://images.ixigo.com/image/upload/misc/a22f3bde2915bcefd31ccce2203529a7-sopov.jpeg");
+    padding: 5px 20px 15px 20px;
+    border: 1px solid rgb(210, 34, 172);
+    border-radius: 4px;
+    width:100%;
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-gap:20px ;
+       */
+
+
+}
+
+
+body{
+    background-image: url("recipe12.jpg");
+    background-repeat:repeat;
+    background-size: 1200px;
+    background-position:center ;
+    background-attachment: fixed;
+    height: 1000px;
+    width: 1000px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    padding: 0 20px 30px 0;
+    line-height: 1.4;
+
+}
+.class{
+    border:2px solid darkblue ;
+    text-align: center;
+    flex-wrap: wrap;
+    align-content:space-between ;
+
+}
+#id1{
+    order: 3;
+}
+#id2{
+    flex-grow: 2;
+
+}
+#id3{
+    flex-grow: 3;
+}
+.btn{
+    border: radius 200px;
+    border: 0;
+    font-size: 1.1rem;
+    font-weight: 50;
+    margin: 1px;px 0 ;
+    padding: 1px 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    position: stick;
+    width: 50px;
+    height: 50px;
+    transition: width 2s ,height 4s, border-radius 3s;
+
+}
+.btn:hover{
+    width:100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color:plum;
+}
+#box{
+    float: left;
+    margin: 15px;
+    width: 150px;
+    height: 150px;
+    border-right:5px ;
+    background-color: lightblue;
+    padding: 1em;
+} 
+/* .btn--primary{
+    background:dodgerblue ;
+    color:#fff;
+    
+
+
+}
+.btn--primary:hover{
+    background-color: rgb(8 123 238);
+} */
+
